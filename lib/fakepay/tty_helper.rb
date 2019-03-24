@@ -18,6 +18,7 @@ module Fakepay
       return yield if ENV['RACK_ENV'] == 'test'
 
       spinner = TTY::Spinner.new("[:spinner] #{message}...")
+      spinner.auto_spin
       begin
         result = yield
         spinner.stop('Done.')
