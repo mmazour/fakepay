@@ -18,12 +18,14 @@ module Fakepay
       return yield if ENV['RACK_ENV'] == 'test'
 
       spinner = TTY::Spinner.new("[:spinner] #{message}...")
-      result = yield
-      spinner.stop('Done.')
-      result
-    rescue StandardError => err
-      spinner.error('error.')
-      raise err
+      begin
+        result = yield
+        spinner.stop('Done.')
+        result
+      rescue StandardError => err
+        spinner.error('error.')
+        raise err
+      end
     end
 
     #
