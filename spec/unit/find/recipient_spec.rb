@@ -9,7 +9,7 @@ RSpec.describe Fakepay::Commands::Find::Recipient do
     config.hook_into :webmock
   end
 
-  it 'executes `list recipients` command successfully' do
+  it 'executes `find recipient {name)` command successfully' do
     output = StringIO.new
     options = {}
 

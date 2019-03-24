@@ -31,5 +31,12 @@ module Fakepay
              'find [recipient || payment]',
              '`find recipient "name"` to find a recipient by name, or ' \
                '`find payment "id"` to find a payment by id.'
+
+    require_relative 'commands/create'
+    register Fakepay::Commands::Create,
+             'create',
+             'create [recipient || payment]',
+             '`create recipient "name"` to create a recipient by name, or ' \
+               '`find payment "id"` to create a payment.'
   end
 end
