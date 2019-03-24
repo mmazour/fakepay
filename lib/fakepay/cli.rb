@@ -21,8 +21,15 @@ module Fakepay
     require_relative 'commands/list'
     register Fakepay::Commands::List,
              'list',
-             'list [payments || recipients]',
+             'list [recipients || payments]',
              '`list recipients` to list recipients, or ' \
                '`list payments` to list payments'
+
+    require_relative 'commands/find'
+    register Fakepay::Commands::Find,
+             'find',
+             'find [recipient || payment]',
+             '`find recipient "name"` to find a recipient by name, or ' \
+               '`find payment "id"` to find a payment by id.'
   end
 end
