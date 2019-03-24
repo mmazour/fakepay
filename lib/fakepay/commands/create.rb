@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'thor'
+require 'optparse'
 
 module Fakepay
   module Commands
@@ -29,18 +30,45 @@ module Fakepay
         type: :boolean,
         desc: 'Create a payment by amount, currency, and recipient.'
       )
-      def payment(amount, currency, recipient_id)
+      def payment(*args)
+        params = parse_payment_args(args)
+
         if options[:help]
           invoke :help, ['payment']
         else
           require_relative 'create/payment'
           Fakepay::Commands::Create::Payment.new(
-            amount,
-            currency,
-            recipient_id,
+            params[:amount],
+            params[:currency],
+            params[:reicpient],
             options
           ).execute
         end
+      end
+
+      private
+
+      def parse_payment_args(args)
+        parser = OptionParser.new do |opts|
+          opts.banner = 'Usage: fakepay create payment [options]'
+          opts.on '--amount AMOUNT', 'the amount'
+          opts.on '--currency CURRENCY', 'the currency, e.g. "GBP"'
+          opts.on '--recipient RECIPIENT_ID', "the recipient's ID"
+        end
+        params = {}
+        begin
+          parser.parse!(args, into: params)
+          missing = %i[amount currency recipient] - params.keys
+          if missing.any?
+            missing.each { |m| STDERR.puts "Missing required argument: --#{m}" }
+            raise OptionParser::MissingArgument, 'request incomplete'
+          end
+        rescue OptionParser::MissingArgument, OptionParser::InvalidOption => e
+          STDERR.puts e.message
+          STDERR.puts parser
+          exit(1)
+        end
+        params
       end
     end
   end

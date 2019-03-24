@@ -5,6 +5,10 @@ Gemspec/OrderedDependencies:
   Exclude:
     - fakepay.gemspec
 
+Metrics/AbcSize:
+  Exclude:
+    - lib/fakepay/commands/create.rb
+
 Metrics/MethodLength:
   Exclude:
     - lib/**/*.rb
