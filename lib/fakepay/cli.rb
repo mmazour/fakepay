@@ -16,6 +16,6 @@ module Fakepay
       require_relative 'version'
       puts "v#{Fakepay::VERSION}"
     end
-    map %w(--version -v) => :version
+    map %w[--version -v] => :version
   end
 end

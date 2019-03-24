@@ -3,6 +3,9 @@
 require 'forwardable'
 
 module Fakepay
+  #
+  # Base class for commands within the app.
+  #
   class Command
     extend Forwardable
 
