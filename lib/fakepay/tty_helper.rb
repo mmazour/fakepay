@@ -14,6 +14,9 @@ module Fakepay
     # Display a spinner while yielding out to a block.
     #
     def with_spinner(message)
+      # Don't output during tests
+      return yield if ENV['RACK_ENV'] == 'test'
+
       spinner = TTY::Spinner.new("[:spinner] #{message}...")
       result = yield
       spinner.stop('Done.')
