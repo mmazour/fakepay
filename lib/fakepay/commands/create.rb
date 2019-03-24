@@ -40,7 +40,7 @@ module Fakepay
           Fakepay::Commands::Create::Payment.new(
             params[:amount],
             params[:currency],
-            params[:reicpient],
+            params[:recipient],
             options
           ).execute
         end
