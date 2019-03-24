@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
+require 'yaml'
+
 module Fakepay
   #
   # Helper methods for working with Coolpay
   #
   module CoolpayHelper
     require 'coolpay'
+
+    CONFIG_FILE_NAME = '.coolpay.yml'
 
     module_function
 
@@ -21,10 +25,25 @@ module Fakepay
       DOC
     end
 
+    def coolpay_configured?
+      !(Coolpay.api_url && Coolpay.username && Coolpay.api_key).nil?
+    end
+
     def configure_coolpay
-      Coolpay.api_url ||= 'https://private-6d20e-coolpayapi.apiary-mock.com/api'
-      Coolpay.username ||= 'your_username'
-      Coolpay.api_key ||= '5up3r$ecretKey!'
+      return if coolpay_configured?
+
+      # Config file takes precedence
+      if FileTest.exist?(CONFIG_FILE_NAME)
+        config = YAML.safe_load(File.read(CONFIG_FILE_NAME))
+        Coolpay.api_url = config.dig('coolpay', 'api_url')
+        Coolpay.username = config.dig('coolpay', 'username')
+        Coolpay.api_key = config.dig('coolpay', 'api_key')
+      end
+
+      # Use env vars for anything not already set
+      Coolpay.api_url ||= ENV['COOLPAY_API_URL']
+      Coolpay.username ||= ENV['COOLPAY_USERNAME']
+      Coolpay.api_key ||= ENV['COOLPAY_API_KEY']
     end
   end
 end

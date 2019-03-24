@@ -1,0 +1,5 @@
+---
+coolpay:
+  api_url: https://coolpay.herokuapp.com/api
+  username: your_username
+  api_key: your_api_key
