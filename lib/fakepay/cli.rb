@@ -17,5 +17,12 @@ module Fakepay
       puts "v#{Fakepay::VERSION}"
     end
     map %w[--version -v] => :version
+
+    require_relative 'commands/list'
+    register Fakepay::Commands::List,
+             'list',
+             'list [payments || recipients]',
+             '`list recipients` to list recipients, or ' \
+               '`list payments` to list payments'
   end
 end
