@@ -1,14 +1,8 @@
 # frozen_string_literal: true
 
 require 'fakepay/commands/list/recipients'
-require 'vcr'
 
 RSpec.describe Fakepay::Commands::List::Recipients do
-  VCR.configure do |config|
-    config.cassette_library_dir = 'spec/support/fixtures/vcr_cassettes'
-    config.hook_into :webmock
-  end
-
   it 'executes `list recipients` command successfully' do
     output = StringIO.new
     options = {}

@@ -2,6 +2,7 @@
 
 require 'bundler/setup'
 require 'fakepay'
+require 'vcr'
 
 ENV['RACK_ENV'] = 'test' # so we can tell when we're under test
 
@@ -15,4 +16,9 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/support/fixtures/vcr_cassettes'
+  config.hook_into :webmock
 end

@@ -1,14 +1,8 @@
 # frozen_string_literal: true
 
 require 'fakepay/commands/find/payment'
-require 'vcr'
 
 RSpec.describe Fakepay::Commands::Find::Payment do
-  VCR.configure do |config|
-    config.cassette_library_dir = 'spec/support/fixtures/vcr_cassettes'
-    config.hook_into :webmock
-  end
-
   it 'executes `find payment {id}` command successfully' do
     output = StringIO.new
     options = {}
