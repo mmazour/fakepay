@@ -10,6 +10,8 @@ module Fakepay
     require 'coolpay'
 
     CONFIG_FILE_NAME = '.coolpay.yml'
+    PMT_HEADERS = %w[id amount currency recipient_id status].freeze
+    RCP_HEADERS = %w[id name].freeze
 
     module_function
 
@@ -44,6 +46,14 @@ module Fakepay
       Coolpay.api_url ||= ENV['COOLPAY_API_URL']
       Coolpay.username ||= ENV['COOLPAY_USERNAME']
       Coolpay.api_key ||= ENV['COOLPAY_API_KEY']
+    end
+
+    def payment_display_fields(p)
+      [p.id, p.amount, p.currency, p.recipient_id, p.status]
+    end
+
+    def recipient_display_fields(r)
+      [r.id, r.name]
     end
   end
 end

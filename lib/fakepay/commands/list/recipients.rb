@@ -29,8 +29,8 @@ module Fakepay
           end
 
           output.puts "Found #{recipients.length}"
-          puts_tableized(output, recipients, headers: %w[id name]) do |r|
-            [r.id, r.name]
+          puts_tableized(output, recipients, headers: RCP_HEADERS) do |r|
+            recipient_display_fields(r)
           end
         end
       end

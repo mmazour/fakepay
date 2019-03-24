@@ -30,8 +30,8 @@ module Fakepay
           end
 
           if recipient
-            puts_tableized(output, [recipient], headers: %w[id name]) do |r|
-              [r.id, r.name]
+            puts_tableized(output, [recipient], headers: RCP_HEADERS) do |r|
+              recipient_display_fields(r)
             end
           else
             output.puts 'Recipient not found.'

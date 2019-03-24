@@ -17,8 +17,6 @@ module Fakepay
         include CoolpayHelper
         include TTYHelper
 
-        HEADERS = %w[id amount currency recipient_id status].freeze
-
         def initialize(options)
           @options = options
         end
@@ -31,8 +29,8 @@ module Fakepay
           end
 
           output.puts "Found #{payments.length}"
-          puts_tableized(output, payments, headers: HEADERS) do |p|
-            [p.id, p.amount, p.currency, p.recipient_id, p.status]
+          puts_tableized(output, payments, headers: PMT_HEADERS) do |p|
+            payment_display_fields(p)
           end
         end
       end
