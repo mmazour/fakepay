@@ -23,7 +23,7 @@ module Fakepay
       raise <<~DOC
         Failed to log in to Coolpay!
         You must set api_url, username, and api_key to valid values.
-        How? # TODO
+        See the configuration section of the README.
       DOC
     end
 
