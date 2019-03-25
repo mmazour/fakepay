@@ -155,7 +155,7 @@ Fakepay was built as a [TTY](https://piotrmurach.github.io/tty/) application. TT
 - `lib/fakepay/coolpay_helper` and `lib/fakepay/tty_helper`.
 - `spec/unit/*/*_spec.rb` (e.g. `spec/unit/create/payment_spec.rb`).
 
-TTY also generates projects expecting them to become gems. While that's useful in some situations it's not relevant here (though I haven't yet taken time to strip out the gemmines).
+TTY also generates projects expecting them to become gems. While that's useful in some situations it's not relevant here (though I haven't yet taken time to strip out the gemminess).
 
 ### Content-type warnings
 
