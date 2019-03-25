@@ -17,14 +17,15 @@ module Fakepay
 
     def setup_coolpay
       configure_coolpay
-      Coolpay.authorize
+      Coolpay.authorize if coolpay_configured?
       return if Coolpay.authorized?
 
-      raise <<~DOC
+      STDERR.puts <<~DOC
         Failed to log in to Coolpay!
         You must set api_url, username, and api_key to valid values.
         See the configuration section of the README.
       DOC
+      exit 1
     end
 
     def coolpay_configured?
