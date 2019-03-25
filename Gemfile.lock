@@ -1,5 +1,6 @@
-PATH
-  remote: ../mmazour_coolpay
+GIT
+  remote: https://github.com/mmazour/coolpay
+  revision: 6e302c05b44aaa89fd1cf0b45d7ea21821870eeb
   specs:
     coolpay (0.1.0)
       rest-client (~> 2.0)
