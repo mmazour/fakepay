@@ -1,6 +1,6 @@
 # Fakepay
 
-Fakepay is a development demo for Fakebook, which uses the Coolpay API to allow users to send money to friends.
+Fakepay is a development demo for Fakebook, using the Coolpay API to allow users to send money to friends.
 
 Fakepay has a simple command-line interface allowing recipients and payments to be created, listed, and searched. 
 
